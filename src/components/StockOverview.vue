@@ -66,7 +66,7 @@
                         <span>{{recomnumber}}</span>
                     </li>
                     <li v-if="recomnumber > 0" class="list-group-item">
-                        <div class="progress">
+                        <div class="progress" data-bs-toggle="tooltip" data-bs-placement="top" title="Green = Strong buy | Blue = Buy | Grey = Hold | Yellow = Sell | Red = Strong sell" data-container="body">
                             <div class="progress-bar bg-success" role="progressbar" aria-label="Segment strong buy" :style="{width: recom_sb/recomnumber*100+'%'}" v-bind:aria-valuenow="recom_sb" aria-valuemin="0" aria-valuemax="100">{{recom_sb}}</div>
                             <div class="progress-bar bg-info" role="progressbar" aria-label="Segment buy" :style="{width: recom_b/recomnumber*100+'%'}" v-bind:aria-valuenow="recom_b" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Buy">{{recom_b}}</div>
                             <div class="progress-bar bg-secondary" role="progressbar" aria-label="Segment hold" :style="{width: recom_h/recomnumber*100+'%'}" v-bind:aria-valuenow="recom_h" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hold">{{recom_h}}</div>
