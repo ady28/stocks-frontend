@@ -55,6 +55,7 @@ export default {
     },
     async mounted() {
         this.loaded = false
+        axios.defaults.withCredentials = true;
         this.ticker = this.$route.params.ticker.toUpperCase();
         await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.ticker}`)
         .then(response => (this.stock = response.data.data));
