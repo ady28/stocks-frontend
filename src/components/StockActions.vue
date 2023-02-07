@@ -122,6 +122,7 @@ export default {
             const tempName = this.newName
             this.newName = ''
 
+            axios.defaults.withCredentials = true;
             await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/rename/${tempName}`, {withCredentials: true})
             .then(response => (this.resp = response.data))
             .catch(function(error){this.$toast.error(error)});
