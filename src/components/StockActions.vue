@@ -122,7 +122,7 @@ export default {
             const tempName = this.newName
             this.newName = ''
 
-            await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/rename/${tempName}`)
+            await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/rename/${tempName}`, {withCredentials: true})
             .then(response => (this.resp = response.data))
             .catch(function(error){this.$toast.error(error)});
 
@@ -146,7 +146,7 @@ export default {
             const tempType = this.type
             this.type = ""
 
-            await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/removefindata/${tempType}/${tempEndDateY}`)
+            await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/removefindata/${tempType}/${tempEndDateY}`, {withCredentials: true})
             .then(response => (this.resp = response.data))
             .catch(function(error){this.$toast.error(error)});
 
@@ -167,7 +167,7 @@ export default {
             }
         },
         updateStock: async function() {
-            await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/getdata`)
+            await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${this.stock.ticker}/getdata`, {withCredentials: true})
             .then(response => (this.resp = response.data))
             .catch(function(error){this.$toast.error(error)});
 

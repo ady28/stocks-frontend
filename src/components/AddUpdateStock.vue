@@ -44,7 +44,7 @@ export default {
     addUpdateBtn: async function() {
       let tempTicker = this.ticker
       this.ticker = ""
-      await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${tempTicker}/getdata`)
+      await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${tempTicker}/getdata`, {withCredentials: true})
         .then(response => (this.resp = response.data))
         .catch(function(error){this.$toast.error(error)});
 

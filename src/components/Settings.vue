@@ -59,7 +59,7 @@ import axios from 'axios'
             updateYKey: async function(){
                 const tempkey = this.ykey
                 this.ykey = ""
-                await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI2}/keys/yahoo`, {key: tempkey})
+                await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI2}/keys/yahoo`, {key: tempkey}, {withCredentials: true})
                     .then(response => (this.resp = response.data))
                     .catch(function(error){this.$toast.error(error)});
                 if(this.resp.success === false)
@@ -78,7 +78,7 @@ import axios from 'axios'
             updateAKey: async function(){
                 const tempkey = this.akey
                 this.akey = ""
-                await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI2}/keys/alpha`, {key: tempkey})
+                await axios.put(`${process.env.VUE_APP_STOCKSCLIENTAPI2}/keys/alpha`, {key: tempkey}, {withCredentials: true})
                     .then(response => (this.resp = response.data))
                     .catch(function(error){this.$toast.error(error)});
                 if(this.resp.success === false)
