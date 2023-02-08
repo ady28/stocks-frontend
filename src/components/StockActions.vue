@@ -1,24 +1,24 @@
 <template>
-    <div v-if="$store.state.user.role == 'admin'">
+    <div v-if="$store.state.user.email != ''">
         <div class="row m-3 align-items-center">
-            <div class="col-auto">
+            <div class="col-auto" v-if="$store.state.user.role == 'admin'">
                 <label for="inputStockTicker" class="col-form-label">Rename stock:</label>
             </div>
-            <div class="col-auto">
+            <div class="col-auto" v-if="$store.state.user.role == 'admin'">
                 <input v-model="newName" type="text" id="inputStockTicker" class="form-control" placeholder="Enter ticker">
             </div>
-            <div class="col-auto">
+            <div class="col-auto" v-if="$store.state.user.role == 'admin'">
                 <button v-on:click="renameStock" type="button" class="btn btn-primary" v-bind:disabled="renButtonDisable">Rename stock</button>
             </div>
             <div class="col-auto">
                 <button v-on:click="updateStock" type="button" class="btn btn-success">Update stock</button>
             </div>
-            <div class="col-auto">
+            <div class="col-auto" v-if="$store.state.user.role == 'admin'">
                 <button data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" class="btn btn-danger">Delete stock</button>
             </div>
         </div>
 
-        <div class="row m-3 align-items-center">
+        <div class="row m-3 align-items-center" v-if="$store.state.user.role == 'admin'">
             <div class="col-auto">
                 <label class="col-form-label">Remove yearly/quarterly financial data:</label>
             </div>
