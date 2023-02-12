@@ -38,12 +38,12 @@ pipeline {
         stage('Generate SBOM file') {
             steps {
                 sh "docker sbom ${env.DOCKERHUB_USER}/${env.IMAGE_NAME}:${IMAGE_VERSION}-test --format syft-json -o sbom.json"
-                sh "npm audit --omit dev --json --audit-level none > node_sec_analysis.json"
             }
         }
         stage('Security analysis') {
             steps {
                 sh "trivy image ${env.DOCKERHUB_USER}/${env.IMAGE_NAME}:${IMAGE_VERSION}-test -f json -o trivycheck.json"
+                sh "npm audit --omit dev --json --audit-level none > node_sec_analysis.json"
             }
         }
         stage('Tag Test Image'){
