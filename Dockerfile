@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build -- --mode ${env_mode}
 
 # production stage
-FROM nginxinc/nginx-unprivileged:1.23-alpine
+FROM nginxinc/nginx-unprivileged:1.23.3-alpine-slim
 
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
