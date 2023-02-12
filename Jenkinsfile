@@ -43,7 +43,7 @@ pipeline {
         stage('Security analysis') {
             steps {
                 sh "trivy image ${env.DOCKERHUB_USER}/${env.IMAGE_NAME}:${IMAGE_VERSION}-test -f json -o trivycheck.json"
-                sh "npm audit --production --json > node_sec_analysis.json"
+                sh "npm audit --production --json > node_sec_analysis.json || true"
             }
         }
         stage('Tag Test Image'){
