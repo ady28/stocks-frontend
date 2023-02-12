@@ -21,6 +21,7 @@
     "core-js": "^3.8.3",
     "dtoaster": "^0.1.4",
     "jquery": "^3.6.0",
+    "loader-utils": "^3.2.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "mosha-vue-toastify": "^1.0.23",

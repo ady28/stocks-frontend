@@ -38,6 +38,7 @@ pipeline {
         stage('Generate SBOM file') {
             steps {
                 sh "docker sbom ${env.DOCKERHUB_USER}/${env.IMAGE_NAME}:${IMAGE_VERSION}-test --format syft-json -o sbom.json"
+                sh "npm audit --omit dev --json --audit-level none > node_sec_analysis.json"
             }
         }
         stage('Security analysis') {
@@ -98,7 +99,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'sbom.json, dockerfile_lint.json, trivycheck.json', fingerprint: true
+            archiveArtifacts artifacts: 'sbom.json, dockerfile_lint.json, trivycheck.json, node_sec_analysis.json', fingerprint: true
         }
     }
 }
