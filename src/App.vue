@@ -99,6 +99,6 @@ export default {
 <style>
 body {
    padding-bottom: 50px;
-   background-color: rgb(35, 35, 35);
+   background-color: rgb(240,240,240);
 }
 </style>
