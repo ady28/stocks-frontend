@@ -3,7 +3,7 @@
         <div class="row m-3">
             <div class="col-12">
                 <h5>Competitors</h5>
-                <h6 v-for="competitor in stocks.competitors" v-bind:key="competitor">
+                <h6 v-for="competitor in stock.competitors" v-bind:key="competitor">
                     {{ competitor }}
                 </h6>
             </div>
