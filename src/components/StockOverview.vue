@@ -1,6 +1,14 @@
 <template>
     <div>
         <div class="row m-3">
+            <div class="col-12">
+                <h5>Competitors</h5>
+                <h6 v-for="competitor in stocks.competitors">
+                    {{ competitor }}
+                </h6>
+            </div>
+        </div>
+        <div class="row m-3">
             <div class="col-12 col-lg-6">
                 <h6>Company data</h6>
                 <ul class="list-group">
