@@ -4,7 +4,7 @@
             <div class="col-12">
                 <h5>Competitors</h5>
                 <span v-for="competitor in stock.competitors" v-bind:key="competitor">
-                    {{ competitor }}
+                    <h6>{{ competitor }}</h6>
                 </span>
             </div>
         </div>
