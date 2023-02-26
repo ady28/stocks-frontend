@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="row m-3">
+        <div class="row m-3" v-if="stock.competitors">
             <div class="col-12">
                 <h5>Competitors</h5>
                 <span v-for="competitor in stock.competitors" v-bind:key="competitor">
-                    <b class="px-2">{{ competitor }}</b>
+                    <button v-on:click="addOrGoToStock(competitor)" type="button" class="mx-2 btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Import new stock or go to stock if it exists">{{ competitor }}</button>
                 </span>
             </div>
         </div>
@@ -89,11 +89,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'StockOverview',
     props: ["stock"],
     data: function() {
         return {
+            resp: {},
+            stockexists: false,
             recomnumber: 0,
             recom_sb: 0,
             recom_b: 0,
@@ -107,6 +110,40 @@ export default {
             cls_bgdanger: false,
             cls_textwhite: false,
             cls_textblack: false
+        }
+    },
+    methods: {
+        addOrGoToStock: async function(ticker) {
+
+            await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${ticker}/exists`)
+            .then(response => (this.resp = response.data));
+            if(this.resp.data === true) {
+                this.$router.push({name: 'stock', params: {ticker: ticker}});
+                setTimeout(function(){ 
+                    location.reload()
+                }, 100);
+            } else {
+                await axios.get(`${process.env.VUE_APP_STOCKSCLIENTAPI}/${ticker}/getdata`, {withCredentials: true})
+                    .then(response => (this.resp = response.data))
+                    .catch(function(error){this.$toast.error(error)});
+
+                if(this.resp.success === false)
+                {
+                    this.$toast.error(this.resp.data, {
+                    dismissible: true
+                    });
+                }
+                else
+                {
+                    this.$router.push({name: 'stock', params: {ticker: ticker}});
+                    setTimeout(function(){ 
+                        location.reload()
+                    }, 100);
+                    this.$toast.success(this.resp.data, {
+                    dismissible: true
+                    });
+                }
+            }
         }
     },
     watch: {
